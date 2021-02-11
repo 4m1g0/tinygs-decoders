@@ -123,6 +123,7 @@ def parse_beacon(beacon):
         decodeStr += '   {}:{} valid? {}'.format('CRC',hex(c),bool(c==cmsg.view[-1])) + "\n"
         
         packet['decodeStr'] = decodeStr
+        packet['telemetry'] = True
         print(json.dumps(packet))
     else:
         print('{"error": "Invalid header"}')
