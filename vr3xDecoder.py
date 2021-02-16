@@ -88,7 +88,7 @@ def parse_beacon(beacon):
 
         # Data Summary
         decodeStr += '\tData Summary' + "\n"
-        if cmsg.view[27] is 82: # b'R'
+        if cmsg.view[27] == 82: # b'R'
             # --- Rad Summary ---
             decodeStr += '\t  └──Radiation:' + "\n"
             r1 = 2.5-(int.from_bytes(cmsg.view[28:31],'big')*1.49012e-07)
@@ -108,7 +108,7 @@ def parse_beacon(beacon):
             decodeStr += '\t  └──Xlink w/ ({}){}:'.format(hex(s_id),sats[s_id]) + "\n"
             decodeStr += '\t\t  └──Good-UHF:{}, Good-SBand:{}, Last Xlink Time:{}, UHF-RSSI:{}dBm, SBand-RSSI:{}dBm'.format(cmsg.view[28],cmsg.view[29],int.from_bytes(cmsg.view[30:35],'big')/1000,cmsg.view[35]-137,-1*cmsg.view[36]/2) + "\n"
 
-        elif cmsg.view[27] is 0xA8:
+        elif cmsg.view[27] == 0xA8:
             # --- GPS Summary ---
             decodeStr += '\t  └──GPS info:' + "\n"
             _time = int.from_bytes(cmsg.view[28:31],'big')
